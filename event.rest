@@ -1,0 +1,26 @@
+# Post new event to the db
+http://localhost:8181
+POST /events
+{
+    "name": "Sign up and get a job",
+    "startdate": 768346784368,
+    "enddate": 768346784368,
+    "duration": 120,
+    "location": {
+        "name": "Altia Bussines Park",
+        "address": "Carretera hacia armenta",
+        "country": "hnd",
+        "opentime": 10,
+        "closetime": 15,
+        "halls": [{
+            "name": "lobby",
+            "location": "torre 1",
+            "capacity" : 150
+        }]
+    }
+}
+
+# get all the events
+http://localhost:8181
+GET /events
+

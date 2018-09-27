@@ -16,7 +16,7 @@ func ServeAPI(endpoint string, dbhandler persistence.DatabaseHandler) error {
 	eventsrouter := r.PathPrefix("/events").Subrouter()
 
 	// define the routers of the rest api
-	eventsrouter.Methods("GET").Path("/SearchCriteria/{search}").HandlerFunc(handler.findEventHandler)
+	eventsrouter.Methods("GET").Path("{/SearchCriteria}/{search}").HandlerFunc(handler.findEventHandler)
 	eventsrouter.Methods("GET").Path("").HandlerFunc(handler.allEventHandler)
 	eventsrouter.Methods("POST").Path("").HandlerFunc(handler.newEventHandler)
 
