@@ -17,6 +17,6 @@ here is the definition [**Persistence Layer**](https://en.wikipedia.org/wiki/Per
 # Rest API
 The Rest API is a simple request/response to the persistence layer, there is to main request the user can do:
 - `/events` - This will get all the events on the database
-- `/events/id/12 or /events/name/cea - pending implementation`
+- `/events/id/12 or /events/name/cea - get the event base on name or id`
 
 For the rest api we're using gorilla tool kit, and using the mux for url variables as a query
