@@ -43,3 +43,22 @@ here is an example of the json format to create new events, we're using 3 simple
 ```
 
 The system will save the data on the POST /events route. 
+
+# Asynchronous Layer
+
+We're trying to implement the Publish/Subscribe pattern communication instead of client request/response. Each Publisher can emit message to the Subscriber who will get the messages.
+We're using the Rabbit MQ Advanced Message Queueing Protocol to show how this is posible on a large scale project. the documentation for the library that we're using is on the following link: [**RabbitMQ for GO**](https://godoc.org/github.com/streadway/amqp)
+
+# Docker for Rabbit MQ
+$ docker run --detach --name rabbitmq -p 5672:5672 -p 15672:15672 rabbitmq:3-management
+You will need to have docker installed on your machine,to start docker you will need the start command line
+$ docker run rabbitmq
+Then you can go to http://localhost:15672 and you will see the rabbit MQ administrator open
+
+# Booking Services
+We're adding a new services, the Booking Services. for now is using the same mongo db layer than the other event services project, also using the same msgqueue package, for a large scale project we will need to separate this approach
+
+# Run the Apps
+You need to run the 2 apps, to see the example. Events Services will create a services and the booking services will print the same events on the command line, for now. on the future ticket this will save the data to the database
+
+

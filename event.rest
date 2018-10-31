@@ -2,14 +2,14 @@
 http://localhost:8181
 POST /events
 {
-    "name": "best",
+    "name":"hondurasjsconf",
     "startdate": 768346784368,
-    "enddate": 768346784368,
+    "enddate": 43988943,
     "duration": 120,
     "location": {
-        "name": "Paris fifa park",
-        "address": "le monses",
-        "country": "frn",
+        "name": "hondconf",
+        "address": "san pedro sula",
+        "country": "honduras",
         "opentime": 10,
         "closetime": 15,
         "halls": [{
@@ -23,4 +23,5 @@ POST /events
 # get all the events
 http://localhost:8181
 GET /events
+
 

@@ -7,7 +7,9 @@ import (
 
 	"github.com/4piso/okevents/src/eventservice/rest"
 	"github.com/4piso/okevents/src/lib/configuration"
+	msgqueue_amqp "github.com/4piso/okevents/src/lib/msgqueue/amqp"
 	"github.com/4piso/okevents/src/lib/persistence/dblayer"
+	"github.com/streadway/amqp"
 )
 
 func main() {
@@ -20,6 +22,18 @@ func main() {
 		log.Fatal("There is an error on the configuration part ", err)
 	}
 
+	// add the message broker to the main functionallity
+	conn, err := amqp.Dial(config.AMQPMessageBroker)
+	if err != nil {
+		panic(err)
+	}
+
+	// add the new event emitter services calling the event emitter contruction function
+	emitter, err := msgqueue_amqp.NewAMQPEventEmitter(conn, "okevents")
+	if err != nil {
+		panic(err)
+	}
+
 	fmt.Println("connecting to the database ...")
 
 	// connection to the database
@@ -28,5 +42,5 @@ func main() {
 		log.Fatal("DB connection ERROR: ", err)
 	}
 
-	log.Fatal(rest.ServeAPI(config.RestFulEndPoint, dbhandler))
+	log.Fatal(rest.ServeAPI(config.RestFulEndPoint, dbhandler, emitter))
 }

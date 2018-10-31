@@ -8,17 +8,20 @@ import (
 	"github.com/4piso/okevents/src/lib/persistence/dblayer"
 )
 
+// DBTypeDEfault db sections
 var (
-	DBTypeDefault          = dblayer.DBType("mongodb")
-	DBConnectionDefault    = "mongodb://127.0.0.1"
-	RestFulEndPointDefault = "localhost:8181"
+	DBTypeDefault            = dblayer.DBType("mongodb")
+	DBConnectionDefault      = "mongodb://127.0.0.1"
+	RestFulEndPointDefault   = "localhost:8181"
+	AMQPMessageBrokerDefault = "amqp://guest:guest@localhost:5672"
 )
 
 // ServiceConfig struct definition
 type ServiceConfig struct {
-	DataBaseType    dblayer.DBType `json:"databasetype"`
-	DBConnection    string         `json:"dbconnection"`
-	RestFulEndPoint string         `json:"restfulapi_endpoint"`
+	DataBaseType      dblayer.DBType `json:"databasetype"`
+	DBConnection      string         `json:"dbconnection"`
+	RestFulEndPoint   string         `json:"restfulapi_endpoint"`
+	AMQPMessageBroker string         `json:"amqp_message_broker"`
 }
 
 // ExtractConfiguration (filename) => (ServiceConfig, error)
@@ -28,6 +31,7 @@ func ExtractConfiguration(filename string) (ServiceConfig, error) {
 		DBTypeDefault,
 		DBConnectionDefault,
 		RestFulEndPointDefault,
+		AMQPMessageBrokerDefault,
 	}
 
 	// read the file from the files system

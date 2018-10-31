@@ -3,14 +3,15 @@ package rest
 import (
 	"net/http"
 
+	"github.com/4piso/okevents/src/lib/msgqueue"
 	"github.com/4piso/okevents/src/lib/persistence"
 	"github.com/gorilla/mux"
 )
 
 // ServeAPI is going to run our web server
-func ServeAPI(endpoint string, dbhandler persistence.DatabaseHandler) error {
+func ServeAPI(endpoint string, dbhandler persistence.DatabaseHandler, eventEmitter msgqueue.EventEmitter) error {
 	// accesing the eventServices definition
-	handler := newEventHandler(dbhandler)
+	handler := newEventHandler(dbhandler, eventEmitter)
 	r := mux.NewRouter()
 
 	eventsrouter := r.PathPrefix("/events").Subrouter()
