@@ -1,5 +1,5 @@
-# okevents
-just a proof of concept of a full cloud computer software
+# okevents 
+just a proof of concept of a full cloud computer software, using queue systems
 
 Events services
 
